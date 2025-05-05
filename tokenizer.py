@@ -5,13 +5,12 @@ RESERVED = {
     "program", "var", "begin", "end", "integer", "show"
 }
 
-# Regex patterns for each token
 TOKEN_REGEX = [
-    (r'\s+', None),  # Skip whitespace
+    (r'\s+', None),                      # Skip whitespace
     (r'"value="', 'STRING'),
-    (r'[a-zA-Z][a-zA-Z0-9]*', 'IDENT'),
-    (r'[0-9]+', 'NUMBER'),
-    (r'[+\-*/=;,():]', 'SYMBOL'),
+    (r'[a-zA-Z][a-zA-Z0-9]*', 'IDENT'),  # Identifiers or reserved words
+    (r'[0-9]+', 'NUMBER'),               # Numbers (if not part of ident)
+    (r'[+\-*/=;,():]', 'SYMBOL'),        # Symbols
 ]
 
 
@@ -26,8 +25,12 @@ def lexer(source_code):
             if match:
                 value = match.group(0)
                 if token_type:
-                    if token_type == 'IDENT' and value in RESERVED:
-                        tokens.append(value)  # reserved word
+                    if token_type == 'IDENT':
+                        if value in RESERVED:
+                            tokens.append(value)
+                        else:
+                            # Split non-reserved ident
+                            tokens.extend(list(value))
                     elif token_type == 'STRING':
                         tokens.append('"value="')
                     else:
@@ -37,12 +40,12 @@ def lexer(source_code):
                 break
         if not match_found:
             raise SyntaxError(f"Unexpected character: {source_code[pos]}")
+    tokens.append('$')
     return tokens
 
 
 if __name__ == '__main__':
-    SOURCE_CODE = "final25.txt"
-    with open(SOURCE_CODE, "r") as f:
+    with open("final25.txt", "r") as f:
         code = f.read()
     result = lexer(code)
     print(result)

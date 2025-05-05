@@ -1,4 +1,5 @@
-from parse_table import parse_table
+from table import table
+from tokenizer import lexer
 
 # Parsing Table as a dictionary
 productions = {
@@ -71,7 +72,7 @@ def parse(input_string):
 
         if top.isdigit():
             # Valid state to pop
-            action = parse_table[int(top)].get(current_input, None)
+            action = table[int(top)].get(current_input, None)
 
             print(f" Goto: [{top},{current_input}]={action}")
 
@@ -110,6 +111,7 @@ def parse(input_string):
                 # Count the number of symbols in the RHS
                 num_rhs_symbols = len(rhs)
 
+                print(f"Push {top} back into stack")
                 # Push the top, back into the stack before popping again
                 stack.append(top)
 
@@ -128,7 +130,7 @@ def parse(input_string):
                 print(f" Reduction Pop: {reduction_pop}")
 
                 # Get the new state from the parsing table
-                new_state = parse_table[int(reduction_pop)].get(
+                new_state = table[int(reduction_pop)].get(
                     lhs, None)  # Look up the new state
 
                 print(f" Goto: [{reduction_pop}, {lhs}]={new_state}")
@@ -147,8 +149,16 @@ def parse(input_string):
 
 
 # Test the parser with the given expressions
-expressions = ["(i+i)*i$", "(i*)$"]  # "(i+i)/i$"
+with open("final25.txt") as f:
+    code = f.read()
+tokens = lexer(code)
+tokens.append('$')
+parse(tokens)
+
+"""
+#expressions = # ["(i+i)*i$", "(i*)$"]  # "(i+i)/i$"
 for expr in expressions:
     print(f"Testing expression: {expr}")
     parse(expr)
     print("\n")
+"""
