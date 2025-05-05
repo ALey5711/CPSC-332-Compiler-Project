@@ -12,7 +12,7 @@ table = [{'program': 'S2', 'var': None, 'begin': None, 'end': None, 'integer': N
           'P': None, 'I': None, "D": None, 'B': None, 'T': None, 'S': None, 'C': None, 'W': None,
           'G': None, 'A': None, 'E': None, 'H': None, 'F': None, 'N': None, 'K': None, 'M': None,
           'L': None, 'R': None, 'X': None, '$': None},
-         {'program': None, 'var': None, 'begin': None, 'end': None, 'integer': 'S3', 'show': None,  # Row 2
+         {'program': None, 'var': None, 'begin': None, 'end': None, 'integer': None, 'show': None,  # Row 2
           'a': 'S5', 'b': 'S6', 'r': 'S7', 's': 'S8', ';': None, ':': None, '(': None, ')': None, ',': None,
           '+': None, '-': None, '*': None, '/': None, '=': None, '0': None, '1': None, '2': None,
           '3': None, '4': None, '5': None, '6': None, '7': None, '8': None, '9': None, '"value=",': None,

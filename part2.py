@@ -3,6 +3,29 @@ from tokenizer import lexer
 from clean import clean
 from productions import productions
 
+reserved_keywords = {'program', 'var', 'integer', 'begin', 'show', 'end'}
+
+# Grammar-specific expected token error messages
+expected_tokens = {
+    'program': 'program is expected',
+    'var': 'var is expected',
+    'begin': 'begin is expected',
+    'end': 'end is expected',
+    'integer': 'integer is expected',
+    'show': 'show is expected',
+    '(': '( Left parenthesis is missing',
+    ')': ') Right parenthesis is missing',
+    ';': '; is missing',
+    ',': ', is missing'
+}
+
+declared_identifiers = set()
+
+
+def report_error(token, message):
+    print(f"Some Errors. {message} at '{token}'")
+    exit(1)
+
 
 def parse(input_string):
     print(f"START PARSE")
@@ -12,12 +35,23 @@ def parse(input_string):
     # input_string += '$'  # Append end marker to the input
     index = 0  # Pointer for the input string
 
+    in_declaration = False
+
+    in_usage = False
+
+    current_identifier_buffer = []  # store characters building up identifier
+
     print(f"Initial Stack: {stack}")
 
     while stack:
         top = stack.pop()  # Get the top of the stack
+        if index >= len(input_string):
+            report_error('EOF', 'Unexpected end of input')
+
         # print(f" \nPop: {top}")
+
         print(f" Pop: {top}")
+
         current_input = input_string[index]  # Current input symbol
 
         print(f"Stack: {stack}, Read: {current_input}")
@@ -29,9 +63,18 @@ def parse(input_string):
             print(f" Goto: [{top},{current_input}]={action}")
 
             if action is None or action == '':
-                print(
-                    f"Error: No action for state {top} and input '{current_input}'")
-                return False
+                # Check if a more meaningful reserved word is expected
+                state_table = table[int(top)]
+                for reserved in expected_tokens:
+                    if state_table.get(reserved, None):  # There's a valid transition
+                        report_error(current_input, expected_tokens[reserved])
+                        break  # Only report one expected token
+                else:
+                    if current_input not in declared_identifiers and current_input.isalpha():
+                        report_error(current_input, 'unknown identifier')
+                    else:
+                        report_error(
+                            current_input, 'Unrecognized or unexpected token')
 
             if action == 'ACC':
                 print("ACCEPPTED!!!!!!!!!!!!!!")
@@ -47,6 +90,23 @@ def parse(input_string):
                 stack.append(new_state)
                 # Move to the next input symbol
                 index += 1
+
+                if current_input == 'var':
+                    in_declaration = True
+                    print(">> Entered declaration block")
+                elif current_input == 'begin':
+                    in_declaration = False
+                    in_usage = True
+                    print(">> Exited declaration block")
+                    print(f"Declared Identifiers: {declared_identifiers}")
+
+                # Track identifier characters
+                if (current_input not in reserved_keywords) and (current_input.isalpha() or current_input.isdigit()) and (in_declaration or in_usage):
+                    current_identifier_buffer.append(current_input)
+                    print(
+                        f"Added {current_input} to buffer: {current_identifier_buffer}")
+                elif current_input in [',', ';']:
+                    current_identifier_buffer = []
 
                 print(f" Push: {top},{current_input},{new_state}")
                 print(
@@ -98,6 +158,25 @@ def parse(input_string):
                     stack.append(new_state)  # Push the new state
                     print(f"Push:{reduction_pop},{lhs},{new_state}")
                 print(f"Stack after reduction: {stack}")
+
+                if lhs == 'I':
+                    identifier = ''.join(current_identifier_buffer)
+
+                    if in_declaration:
+                        if identifier in declared_identifiers:
+                            print(
+                                f"Warning: Duplicate declaration of identifier '{identifier}'")
+                        else:
+                            declared_identifiers.add(identifier)
+                            print(f"Declared identifier: {identifier}")
+                    elif in_usage:
+                        print(f"Used identifier: {identifier}")
+                        if identifier not in declared_identifiers:
+                            report_error(
+                                current_input, f"Unknown identifier: {identifier}")
+                            # print(f"ERROR: Undeclared identifier used -> {identifier}")
+
+                    current_identifier_buffer = []  # Always clear buffer after I is reduced
 
 
 PARSE_PATH = 'final25.txt'
