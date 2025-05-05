@@ -79,7 +79,4 @@ def clean(input_path: str = FILE_PATH, output_path: str = OUTPUT_FILE_PATH) -> N
         output_file.write('\n'.join(cleaned_lines))
 
 
-if __name__ == "__main__":
-    clean()
-    # Optional second pass example:
-    clean(input_path='final25.txt', output_path='check.txt')
+
