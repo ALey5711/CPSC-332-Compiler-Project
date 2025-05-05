@@ -1,7 +1,7 @@
 # tokenizer.py
 import re
 
-RESERVED = {
+RESERVED_KEYWORDS = {
     "program", "var", "begin", "end", "integer", "show"
 }
 
@@ -9,43 +9,56 @@ TOKEN_REGEX = [
     (r'\s+', None),                      # Skip whitespace
     (r'"value="', 'STRING'),
     (r'[a-zA-Z][a-zA-Z0-9]*', 'IDENT'),  # Identifiers or reserved words
-    (r'[0-9]+', 'NUMBER'),               # Numbers (if not part of ident)
-    (r'[+\-*/=;,():]', 'SYMBOL'),        # Symbols
+    # Numbers (to be split into single digits)
+    (r'[0-9]+', 'NUMBER'),
+    (r'[+\-*/=;,():]', 'SYMBOL'),      # Symbols
 ]
 
 
 def lexer(source_code):
     tokens = []
-    pos = 0
-    while pos < len(source_code):
+    position = 0
+
+    while position < len(source_code):
         match_found = False
+
         for pattern, token_type in TOKEN_REGEX:
             regex = re.compile(pattern)
-            match = regex.match(source_code, pos)
+            match = regex.match(source_code, position)
+
             if match:
-                value = match.group(0)
+                matched_text = match.group(0)
+
                 if token_type:
                     if token_type == 'IDENT':
-                        if value in RESERVED:
-                            tokens.append(value)
+                        if matched_text in RESERVED_KEYWORDS:
+                            tokens.append(matched_text)
                         else:
-                            # Split non-reserved ident
-                            tokens.extend(list(value))
+                            tokens.extend(list(matched_text))
+
                     elif token_type == 'STRING':
                         tokens.append('"value="')
+
+                    elif token_type == 'NUMBER':
+                        tokens.extend(list(matched_text))  # Split each digit
+
                     else:
-                        tokens.append(value)
-                pos = match.end(0)
+                        tokens.append(matched_text)
+
+                position = match.end()
                 match_found = True
                 break
+
         if not match_found:
-            raise SyntaxError(f"Unexpected character: {source_code[pos]}")
+            raise SyntaxError(
+                f"Unexpected character at position {position}: '{source_code[position]}'")
+
     tokens.append('$')
     return tokens
 
 
 if __name__ == '__main__':
-    with open("final25.txt", "r") as f:
-        code = f.read()
-    result = lexer(code)
-    print(result)
+    with open("final25.txt", "r") as file:
+        source = file.read()
+    token_list = lexer(source)
+    print(token_list)
