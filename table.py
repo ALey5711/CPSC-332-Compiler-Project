@@ -251,10 +251,10 @@ table = [{'program': 'S2', 'var': None, 'begin': None, 'end': None, 'integer': N
           'G': None, 'A': None, 'E': None, 'H': None, 'F': None, 'N': None, 'K': None, 'M': None,
           'L': None, 'R': None, 'X': None, '$': None},
          {'program': None, 'var': None, 'begin': None, 'end': None, 'integer': None, 'show': None,  # Row 36
-          'a': None, 'b': None, 'r': None, 's': None, ';': None, ':': None, '(': None, ')': None, ',': None,
+          'a': None, 'b': None, 'r': None, 's': None, ';': None, ':': None, '(': 'S44', ')': None, ',': None,
           '+': None, '-': None, '*': None, '/': None, '=': None, '0': None, '1': None, '2': None,
           '3': None, '4': None, '5': None, '6': None, '7': None, '8': None, '9': None, '"value=",': None,
-          'P': None, 'I': None, "D": None, 'B': None, 'T': None, 'S': None, 'C': 44, 'W': None,
+          'P': None, 'I': None, "D": None, 'B': None, 'T': None, 'S': None, 'C': None, 'W': None,
           'G': None, 'A': None, 'E': None, 'H': None, 'F': None, 'N': None, 'K': None, 'M': None,
           'L': None, 'R': None, 'X': None, '$': None},
          {'program': None, 'var': None, 'begin': None, 'end': None, 'integer': None, 'show': None,  # Row 37
@@ -309,14 +309,14 @@ table = [{'program': 'S2', 'var': None, 'begin': None, 'end': None, 'integer': N
          {'program': None, 'var': None, 'begin': None, 'end': None, 'integer': None, 'show': None,  # Row 44
           'a': 'S5', 'b': 'S6', 'r': 'S7', 's': 'S8', ';': None, ':': None, '(': None, ')': None, ',': None,
           '+': None, '-': None, '*': None, '/': None, '=': None, '0': None, '1': None, '2': None,
-          '3': None, '4': None, '5': None, '6': None, '7': None, '8': None, '9': None, '"value=",': 'S48',
+          '3': None, '4': None, '5': None, '6': None, '7': None, '8': None, '9': None, '"value="': 'S48',
           'P': None, 'I': 47, "D": None, 'B': None, 'T': None, 'S': None, 'C': None, 'W': None,
           'G': 46, 'A': None, 'E': None, 'H': None, 'F': None, 'N': None, 'K': None, 'M': None,
           'L': 4, 'R': None, 'X': None, '$': None},
          {'program': None, 'var': None, 'begin': None, 'end': None, 'integer': None, 'show': None,  # Row 45
-          'a': 'S5', 'b': 'S6', 'r': 'S7', 's': 'S8', ';': None, ':': None, '(': 'S54', ')': None, ',': None,
+          'a': 'S5', 'b': 'S6', 'r': 'S7', 's': 'S8', ';': 'R84', ':': None, '(': 'S54', ')': None, ',': None,
           '+': 'S57', '-': 'S58', '*': None, '/': None, '=': None, '0': 'S13', '1': 'S14', '2': 'S15',
-          '3': 'S16', '4': 'S17', '5': 'S18', '6': 'S19', '7': 'S20', '8': 'S21', '9': 'S22', '"value=",': None,
+          '3': 'S16', '4': 'S17', '5': 'S18', '6': 'S19', '7': 'S20', '8': 'S21', '9': 'S22', '"value="': None,
           'P': None, 'I': 52, "D": None, 'B': None, 'T': None, 'S': None, 'C': None, 'W': None,
           'G': None, 'A': None, 'E': 49, 'H': 50, 'F': 51, 'N': 53, 'K': 55, 'M': 56,
           'L': 4, 'R': None, 'X': None, '$': None},
@@ -335,9 +335,9 @@ table = [{'program': 'S2', 'var': None, 'begin': None, 'end': None, 'integer': N
           'G': None, 'A': None, 'E': None, 'H': None, 'F': None, 'N': None, 'K': None, 'M': None,
           'L': None, 'R': None, 'X': None, '$': None},
          {'program': None, 'var': None, 'begin': None, 'end': None, 'integer': None, 'show': None,  # Row 48
-          'a': 'R14', 'b': 'R14', 'r': 'R14', 's': 'R14', ';': None, ':': None, '(': None, ')': None, ',': None,
+          'a': 'R14', 'b': 'R14', 'r': 'R14', 's': 'R14', ';': None, ':': None, '(': None, ')': None, ',': 'S84',
           '+': None, '-': None, '*': None, '/': None, '=': None, '0': None, '1': None, '2': None,
-          '3': None, '4': None, '5': None, '6': None, '7': None, '8': None, '9': None, '"value=",': None,
+          '3': None, '4': None, '5': None, '6': None, '7': None, '8': None, '9': None, '"value="': None,
           'P': None, 'I': None, "D": None, 'B': None, 'T': None, 'S': None, 'C': None, 'W': None,
           'G': None, 'A': None, 'E': None, 'H': None, 'F': None, 'N': None, 'K': None, 'M': None,
           'L': None, 'R': None, 'X': None, '$': None},
@@ -377,7 +377,7 @@ table = [{'program': 'S2', 'var': None, 'begin': None, 'end': None, 'integer': N
           'G': None, 'A': None, 'E': None, 'H': None, 'F': None, 'N': None, 'K': None, 'M': None,
           'L': None, 'R': None, 'X': None, '$': None},
          {'program': None, 'var': None, 'begin': None, 'end': None, 'integer': None, 'show': None,  # Row 54
-          'a': None, 'b': None, 'r': None, 's': None, ';': None, ':': None, '(': 'S54', ')': None, ',': None,
+          'a': 'S5', 'b': 'S6', 'r': 'S7', 's': 'S8', ';': None, ':': None, '(': 'S54', ')': None, ',': None,
           '+': 'S57', '-': 'S58', '*': None, '/': None, '=': None, '0': 'S13', '1': 'S14', '2': 'S15',
           '3': 'S16', '4': 'S17', '5': 'S18', '6': 'S19', '7': 'S20', '8': 'S21', '9': 'S22', '"value=",': None,
           'P': None, 'I': 52, "D": None, 'B': None, 'T': None, 'S': None, 'C': 54, 'W': None,
@@ -475,7 +475,7 @@ table = [{'program': 'S2', 'var': None, 'begin': None, 'end': None, 'integer': N
           'G': None, 'A': None, 'E': None, 'H': None, 'F': None, 'N': None, 'K': None, 'M': None,
           'L': None, 'R': None, 'X': None, '$': None},
          {'program': None, 'var': None, 'begin': None, 'end': None, 'integer': None, 'show': None,  # Row 68
-          'a': None, 'b': None, 'r': None, 's': None, ';': 'S72', ':': None, '(': None, ')': None, ',': None,
+          'a': None, 'b': None, 'r': None, 's': None, ';': 'S32', ':': None, '(': None, ')': None, ',': None,
           '+': None, '-': None, '*': None, '/': None, '=': None, '0': None, '1': None, '2': None,
           '3': None, '4': None, '5': None, '6': None, '7': None, '8': None, '9': None, '"value=",': None,
           'P': None, 'I': None, "D": None, 'B': None, 'T': None, 'S': None, 'C': None, 'W': None,
@@ -582,6 +582,13 @@ table = [{'program': 'S2', 'var': None, 'begin': None, 'end': None, 'integer': N
          {'program': None, 'var': None, 'begin': None, 'end': 'R29', 'integer': None, 'show': None,  # Row 83 Follow(X) : 'R29'
           'a': None, 'b': None, 'r': None, 's': None, ';': 'R29', ':': None, '(': None, ')': 'R29', ',': None,
           '+': 'R29', '-': 'R29', '*': 'R29', '/': 'R29', '=': None, '0': None, '1': None, '2': None,
+          '3': None, '4': None, '5': None, '6': None, '7': None, '8': None, '9': None, '"value=",': None,
+          'P': None, 'I': None, "D": None, 'B': None, 'T': None, 'S': None, 'C': None, 'W': None,
+          'G': None, 'A': None, 'E': None, 'H': None, 'F': None, 'N': None, 'K': None, 'M': 78,
+          'L': None, 'R': None, 'X': 67, '$': None},
+         {'program': None, 'var': None, 'begin': None, 'end': None, 'integer': None, 'show': None,  # Row 84 Follow(G) : 'R14'
+          'a': 'R14', 'b': 'R14', 'r': 'R14', 's': 'R14', ';': None, ':': None, '(': None, ')': None, ',': None,
+          '+': None, '-': None, '*': None, '/': None, '=': None, '0': None, '1': None, '2': None,
           '3': None, '4': None, '5': None, '6': None, '7': None, '8': None, '9': None, '"value=",': None,
           'P': None, 'I': None, "D": None, 'B': None, 'T': None, 'S': None, 'C': None, 'W': None,
           'G': None, 'A': None, 'E': None, 'H': None, 'F': None, 'N': None, 'K': None, 'M': 78,

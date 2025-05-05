@@ -3,7 +3,7 @@ from tokenizer import lexer
 
 # Parsing Table as a dictionary
 productions = {
-    1: {'E': ['program', ';', 'var', 'D', 'begin', 'S', 'end']},
+    1: {'P': ['program', ';', 'var', 'D', 'begin', 'S', 'end']},
     2: {'I': ['L', 'R']},
     3: {'I': ['L']},
     4: {'D': ['B', ':', 'T', ';']},
@@ -16,7 +16,7 @@ productions = {
     11: {'C': ['A']},
     12: {'W': ['show', '(', 'G', 'I', ')', ';']},
     13: {'W': ['show', '(', 'I', ')', ';']},
-    14: {'G': ['"value=",']},
+    14: {'G': ['"value="', ',']},
     15: {'A': ['I', '=', 'E', ';']},
     16: {'E': ['E', '+', 'H']},
     17: {'E': ['E', '-', 'H']},
