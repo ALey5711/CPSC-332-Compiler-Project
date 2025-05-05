@@ -1,59 +1,7 @@
 from table import table
 from tokenizer import lexer
-
-# Parsing Table as a dictionary
-productions = {
-    1: {'P': ['program', ';', 'var', 'D', 'begin', 'S', 'end']},
-    2: {'I': ['L', 'R']},
-    3: {'I': ['L']},
-    4: {'D': ['B', ':', 'T', ';']},
-    5: {'B': ['I', ',', 'B']},
-    6: {'B': ['I']},
-    7: {'T': ['integer']},
-    8: {'S': ['C']},
-    9: {'S': ['C', 'S']},
-    10: {'C': ['W']},
-    11: {'C': ['A']},
-    12: {'W': ['show', '(', 'G', 'I', ')', ';']},
-    13: {'W': ['show', '(', 'I', ')', ';']},
-    14: {'G': ['"value="', ',']},
-    15: {'A': ['I', '=', 'E', ';']},
-    16: {'E': ['E', '+', 'H']},
-    17: {'E': ['E', '-', 'H']},
-    18: {'E': ['H']},
-    19: {'H': ['H', '*', 'F']},
-    20: {'H': ['H', '/', 'F']},
-    21: {'H': ['F']},
-    22: {'F': ['I']},
-    23: {'F': ['N']},
-    24: {'F': ['(', 'E', ')']},
-    25: {'N': ['K', 'M', 'X']},
-    26: {'N': ['K', 'M']},
-    27: {'N': ['M', 'X']},
-    28: {'N': ['M']},
-    29: {'X': ['M', 'X']},
-    30: {'X': ['M']},
-    31: {'K': ['+']},
-    32: {'K': ['-']},
-    33: {'M': ['0']},
-    34: {'M': ['1']},
-    35: {'M': ['2']},
-    36: {'M': ['3']},
-    37: {'M': ['4']},
-    38: {'M': ['5']},
-    39: {'M': ['6']},
-    40: {'M': ['7']},
-    41: {'M': ['8']},
-    42: {'M': ['9']},
-    43: {'L': ['a']},
-    44: {'L': ['b']},
-    45: {'L': ['r']},
-    46: {'L': ['s']},
-    47: {'R': ['L', 'R']},
-    48: {'R': ['M', 'R']},
-    49: {'R': ['L']},
-    50: {'R': ['M']},
-}
+from clean import clean
+from productions import productions
 
 
 def parse(input_string):
@@ -152,9 +100,11 @@ def parse(input_string):
                 print(f"Stack after reduction: {stack}")
 
 
+PARSE_PATH = 'final25.txt'
 # Test the parser with the given expressions
-with open("final25.txt") as f:
+with open(PARSE_PATH) as f:
     code = f.read()
+clean(PARSE_PATH)
 tokens = lexer(code)
 tokens.append('$')
 parse(tokens)
