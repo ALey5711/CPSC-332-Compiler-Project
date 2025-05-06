@@ -395,7 +395,7 @@ table = [{'program': 'S2', 'var': None, 'begin': None, 'end': None, 'integer': N
           '+': 'R28', '-': 'R28', '*': 'R28', '/': 'R28', '=': None, '0': 'S13', '1': 'S14', '2': 'S15',
           '3': 'S16', '4': 'S17', '5': 'S18', '6': 'S19', '7': 'S20', '8': 'S21', '9': 'S22', '"value=",': None,
           'P': None, 'I': None, "D": None, 'B': None, 'T': None, 'S': None, 'C': None, 'W': None,
-          'G': None, 'A': None, 'E': None, 'H': None, 'F': None, 'N': None, 'K': None, 'M': 78,
+          'G': None, 'A': None, 'E': None, 'H': None, 'F': None, 'N': 53, 'K': None, 'M': 78,
           'L': None, 'R': None, 'X': 67, '$': None},
          {'program': None, 'var': None, 'begin': None, 'end': None, 'integer': None, 'show': None,  # Row 57 Follow(K) : 'R31'
           'a': None, 'b': None, 'r': None, 's': None, ';': None, ':': None, '(': None, ')': None, ',': None,
@@ -546,8 +546,8 @@ table = [{'program': 'S2', 'var': None, 'begin': None, 'end': None, 'integer': N
           'L': None, 'R': None, 'X': None, '$': None},
          {'program': None, 'var': None, 'begin': None, 'end': 'R30', 'integer': None, 'show': None,  # Row 78 Follow(X) : 'R30'
           'a': None, 'b': None, 'r': None, 's': None, ';': 'R30', ':': None, '(': None, ')': 'R30', ',': None,
-          '+': 'R30', '-': 'R30', '*': 'R30', '/': 'R30', '=': None, '0': None, '1': None, '2': None,
-          '3': None, '4': None, '5': None, '6': None, '7': None, '8': None, '9': None, '"value=",': None,
+          '+': 'R30', '-': 'R30', '*': 'R30', '/': 'R30', '=': None, '0': 'S13', '1': 'S14', '2': 'S15',
+          '3': 'S16', '4': 'S17', '5': 'S18', '6': 'S19', '7': 'S20', '8': 'S21', '9': 'S22', '"value=",': None,
           'P': None, 'I': None, "D": None, 'B': None, 'T': None, 'S': None, 'C': None, 'W': None,
           'G': None, 'A': None, 'E': None, 'H': None, 'F': None, 'N': None, 'K': None, 'M': 78,
           'L': None, 'R': None, 'X': 83, '$': None},

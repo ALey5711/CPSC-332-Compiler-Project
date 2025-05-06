@@ -13,10 +13,10 @@ expected_tokens = {
     'end': 'end is expected',
     'integer': 'integer is expected',
     'show': 'show is expected',
-    '(': '( Left parenthesis is missing',
-    ')': ') Right parenthesis is missing',
     ';': '; is missing',
-    ',': ', is missing'
+    ',': ', is missing',
+    '(': '( Left parenthesis is missing',
+    ')': ') Right parenthesis is missing'
 }
 
 declared_identifiers = set()
@@ -65,13 +65,17 @@ def parse(input_string):
             if action is None or action == '':
                 # Check if a more meaningful reserved word is expected
                 state_table = table[int(top)]
-                for reserved in expected_tokens:
-                    if state_table.get(reserved, None):  # There's a valid transition
-                        report_error(current_input, expected_tokens[reserved])
-                        break  # Only report one expected token
+
+                # Try to find a meaningful expected token that would work from this state
+                for token, message in expected_tokens.items():
+                    best_valid = state_table.get(token, None)
+                    # print(f"Token: {token} - Valid: {best_valid}")
+                    if best_valid:  # Valid transition from this state
+                        report_error(current_input, message)
+                        break
                 else:
                     if current_input not in declared_identifiers and current_input.isalpha():
-                        report_error(current_input, 'unknown identifier')
+                        report_error(current_input, 'Unknown identifier')
                     else:
                         report_error(
                             current_input, 'Unrecognized or unexpected token')
@@ -103,8 +107,7 @@ def parse(input_string):
                 # Track identifier characters
                 if (current_input not in reserved_keywords) and (current_input.isalpha() or current_input.isdigit()) and (in_declaration or in_usage):
                     current_identifier_buffer.append(current_input)
-                    print(
-                        f"Added {current_input} to buffer: {current_identifier_buffer}")
+                    # print(f"Added {current_input} to buffer: {current_identifier_buffer}")
                 elif current_input in [',', ';']:
                     current_identifier_buffer = []
 
@@ -168,9 +171,9 @@ def parse(input_string):
                                 f"Warning: Duplicate declaration of identifier '{identifier}'")
                         else:
                             declared_identifiers.add(identifier)
-                            print(f"Declared identifier: {identifier}")
+                            # print(f"Declared identifier: {identifier}")
                     elif in_usage:
-                        print(f"Used identifier: {identifier}")
+                        # print(f"Used identifier: {identifier}")
                         if identifier not in declared_identifiers:
                             report_error(
                                 current_input, f"Unknown identifier: {identifier}")
