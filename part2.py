@@ -3,7 +3,7 @@ from tokenizer import lexer
 from clean import clean
 from productions import productions
 
-reserved_keywords = {'program', 'var', 'integer', 'begin', 'show', 'end'}
+reserved_keywords = {'program', 'var', 'integer', 'begin', 'show', 'end', '*'}
 
 # Grammar-specific expected token error messages
 expected_tokens = {
@@ -107,8 +107,9 @@ def parse(input_string):
                 # Track identifier characters
                 if (current_input not in reserved_keywords) and (current_input.isalpha() or current_input.isdigit()) and (in_declaration or in_usage):
                     current_identifier_buffer.append(current_input)
-                    # print(f"Added {current_input} to buffer: {current_identifier_buffer}")
-                elif current_input in [',', ';']:
+                    print(
+                        f"Added {current_input} to buffer: {current_identifier_buffer}")
+                elif current_input in [',', ';', '*', '/']:
                     current_identifier_buffer = []
 
                 print(f" Push: {top},{current_input},{new_state}")
@@ -173,11 +174,12 @@ def parse(input_string):
                             declared_identifiers.add(identifier)
                             # print(f"Declared identifier: {identifier}")
                     elif in_usage:
-                        # print(f"Used identifier: {identifier}")
+                        print(f"Used identifier: {identifier}")
                         if identifier not in declared_identifiers:
                             report_error(
                                 current_input, f"Unknown identifier: {identifier}")
-                            # print(f"ERROR: Undeclared identifier used -> {identifier}")
+                            print(
+                                f"ERROR: Undeclared identifier used -> {identifier}")
 
                     current_identifier_buffer = []  # Always clear buffer after I is reduced
 
